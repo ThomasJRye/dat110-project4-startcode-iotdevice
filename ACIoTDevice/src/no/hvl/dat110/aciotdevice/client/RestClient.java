@@ -23,9 +23,8 @@ public class RestClient {
 		RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), new Gson().toJson(new AccessMessage(message)));
 		Request request = new Request.Builder().url("http://localhost:8080" + logpath).post(body).build();
 		
-		String requestString = request.toString();
-		
-		System.out.println(requestString);
+
+		System.out.println(request.toString());
 		
 		try (Response response = client.newCall(request).execute()) {
 			System.out.println(response.body().string());
@@ -38,15 +37,13 @@ public class RestClient {
 	
 	public AccessCode doGetAccessCode() {
 
-		AccessCode code = null;
-		
 		OkHttpClient client = new OkHttpClient();
 		client.newBuilder().build();
 		Request request = new Request.Builder().url("http://localhost:8080" + codepath).get().build();
 
-		String requestString = request.toString();
 		System.out.println(request.toString());
 		
+		AccessCode code = null;
 		try {
 			Gson gson = new Gson();
 
